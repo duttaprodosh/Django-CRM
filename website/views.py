@@ -5,6 +5,7 @@ from .forms import SignUpForm, AddRecordForm
 from .models import Record
 
 def home(request):
+    records = Record.objects.all()
 # Cheks to see if logging in
     if request.method == 'POST':
         username = request.POST['username']
@@ -19,7 +20,7 @@ def home(request):
             messages.success(request, "Problem in Loggin..Please Try Again.")
             return redirect('home')
     else :
-        return render(request, 'home.html', {})
+        return render(request, 'home.html', {'records':records})
 
 def login_user(request):
     pass
